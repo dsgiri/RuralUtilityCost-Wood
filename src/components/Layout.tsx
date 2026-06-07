@@ -14,11 +14,11 @@ const NAV_LINKS = [
 ];
 
 const FOOTER_LINKS = [
-  { path: '/about', label: 'About' },
-  { path: '/contact', label: 'Contact' },
-  { path: '/legal', label: 'Legal' },
-  { path: '/license', label: 'License' },
-  { path: 'https://github.com', label: 'GitHub', isExternal: true },
+  { path: 'https://ruralutilitycost.com/about', label: 'About Us', isExternal: true },
+  { path: 'https://ruralutilitycost.com/contact', label: 'Contact Us', isExternal: true },
+  { path: 'https://ruralutilitycost.com/privacy-policy', label: 'Privacy Policy', isExternal: true },
+  { path: 'https://ruralutilitycost.com/terms-of-use', label: 'Terms of Use', isExternal: true },
+  { path: 'https://ruralutilitycost.com/disclaimer', label: 'Disclaimer', isExternal: true },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
