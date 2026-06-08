@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
-import { PORTFOLIO_DATA } from '../data/portfolio';
+import { getGroupedPortfolio } from '../data/parse-portfolio';
 import { Grid, ChevronRight, Anchor } from 'lucide-react';
 import { AdSensePlaceholder } from '../components/AdSensePlaceholder';
 
 export function Portfolio() {
+  const categories = getGroupedPortfolio();
+
   return (
     <div className="flex flex-col flex-1 h-full w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 space-y-8">
       {/* Breadcrumbs */}
@@ -43,7 +45,7 @@ export function Portfolio() {
 
       {/* Portfolio Grid */}
       <div className="space-y-12 pb-12">
-        {PORTFOLIO_DATA.map((category, index) => (
+        {categories.map((category, index) => (
           <section key={category.title} aria-labelledby={`category-${index}`}>
             <h2 
               id={`category-${index}`} 
@@ -53,27 +55,27 @@ export function Portfolio() {
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {category.links.map((link) => (
+              {category.sites.map((site) => (
                 <div 
-                  key={link.name} 
+                  key={site.name} 
                   className="bg-white border border-[#DCD3C7] rounded-sm p-5 hover:shadow-md hover:border-[#8C7A6B] transition-all flex flex-col group h-full focus-within:ring-2 focus-within:ring-[#5A4633]"
                 >
                   <h3 className="font-bold text-[#42372E] text-lg mb-2 leading-tight">
                     <a 
-                      href={link.url}
+                      href={site.url}
                       className="focus:outline-none before:absolute before:inset-0 relative z-10 group-hover:text-[#5A4633] transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {link.name}
+                      {site.name}
                     </a>
                   </h3>
                   <p className="text-sm text-[#8C7A6B] leading-relaxed flex-1">
-                    {link.description}
+                    {site.description}
                   </p>
                   <div className="mt-4 pt-3 border-t border-stone-100 flex justify-between items-center text-[#5A4633]">
                     <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 border border-[#DCD3C7] px-2 py-0.5 bg-[#F9F7F4] rounded-sm">
-                      {new URL(link.url).hostname.replace('.ruralutilitycost.com', '') === 'ruralutilitycost' ? 'Platform' : new URL(link.url).hostname.replace('.ruralutilitycost.com', '')}
+                      {new URL(site.url).hostname.replace('.ruralutilitycost.com', '') === 'ruralutilitycost' ? 'Platform' : new URL(site.url).hostname.replace('.ruralutilitycost.com', '')}
                     </span>
                     <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" aria-hidden="true" />
                   </div>

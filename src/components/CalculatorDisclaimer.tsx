@@ -1,5 +1,6 @@
 import { AlertCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { Link } from 'react-router-dom';
 
 export const FULL_DISCLAIMER_TEXT = "Disclaimer: These figures are estimates based on standard assumptions and user inputs. This tool is for informational purposes only and does not replace professional financial, legal, engineering, or agricultural advice. We disclaim all liability for decisions, costs, losses, or damages arising from reliance on these results. Please consult qualified local professionals or certified advisors for guidance specific to your situation.";
 
@@ -16,7 +17,7 @@ export function CalculatorDisclaimer({ customText, className }: CalculatorDiscla
       <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-[#8C7A6B]" aria-hidden="true" />
       <div>
         <strong className="font-bold text-[#5A4633] block mb-1">Important Notice</strong>
-        <p>{customText || FULL_DISCLAIMER_TEXT}</p>
+        <p>{customText || FULL_DISCLAIMER_TEXT} <Link to="/disclaimer" className="underline hover:text-[#5A4633] transition-colors ml-1">Read Full Disclaimer</Link></p>
       </div>
     </div>
   );

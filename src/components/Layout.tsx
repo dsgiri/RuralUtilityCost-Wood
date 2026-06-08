@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { ShieldCheck, HardHat, FileText, Anchor } from 'lucide-react';
+import { FOOTER_LINKS } from '../config/footerLinks';
 
 const NAV_LINKS = [
   { path: '/', label: 'Home' },
@@ -11,15 +12,6 @@ const NAV_LINKS = [
   { path: '/predictor', label: 'Predictor', isExternal: true },
   { path: '/', label: 'Wood' },
   { path: '/favorites', label: 'My favorites' },
-];
-
-const FOOTER_LINKS = [
-  { path: 'https://ruralutilitycost.com/about', label: 'About Us', isExternal: true },
-  { path: 'https://ruralutilitycost.com/contact', label: 'Contact Us', isExternal: true },
-  { path: 'https://ruralutilitycost.com/privacy-policy', label: 'Privacy Policy', isExternal: true },
-  { path: 'https://ruralutilitycost.com/terms-of-use', label: 'Terms of Use', isExternal: true },
-  { path: '/disclaimer', label: 'Disclaimer', isExternal: false },
-  { path: '/portfolio', label: 'Network Portfolio', isExternal: false },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -77,13 +69,11 @@ export function Layout({ children }: { children: ReactNode }) {
       <footer className="bg-[#3D342C] text-[#DCD3C7] p-4 lg:px-8 flex flex-col md:flex-row justify-between items-center shrink-0 gap-4">
         <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-[10px] font-bold uppercase tracking-widest">
           {FOOTER_LINKS.map((link, idx) => (
-            link.isExternal ? (
+            link.path.startsWith('http') ? (
               <a
                 key={idx}
                 href={link.path}
                 className="hover:text-white transition-colors"
-                target="_blank"
-                rel="noreferrer"
               >
                 {link.label}
               </a>
